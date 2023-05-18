@@ -1,6 +1,7 @@
 import { createContext,useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, signInWithPhoneNumber, signInWithEmailAndPassword, signOut, signInWithPopup,onAuthStateChanged, GithubAuthProvider, GoogleAuthProvider, RecaptchaVerifier  } from "firebase/auth"
 import {auth} from "../Firebase/Firebase.config"
+import Swal from 'sweetalert2'
 export const AuthContext = createContext(null); 
 const googleAuthProvider = new GoogleAuthProvider();
 

@@ -7,7 +7,7 @@ function Banner() {
         <Carousel.Item>
           <img
             className="d-block carousel-image"
-            src="https://alanzo.ancorathemes.com/wp-content/uploads/2017/09/title_bg.jpg?id=452"
+            src="https://www.brickfinder.net/wp-content/uploads/2020/02/DnVT5pOX4AEfOlq-1-1024x576.jpg"
             alt="First slide"
           />
           <Carousel.Caption>
@@ -18,7 +18,7 @@ function Banner() {
         <Carousel.Item>
           <img
             className="d-block carousel-image"
-            src="	https://alanzo.ancorathemes.com/wp-content/uploads/2018/01/sliders_1.jpg"
+            src="https://live.staticflickr.com/4128/5125579893_b8a1e3ea2d_b.jpg"
             alt="Second slide"
           />
 
@@ -30,7 +30,7 @@ function Banner() {
         <Carousel.Item>
           <img
             className="d-block carousel-image"
-            src="https://img.freepik.com/free-photo/dietary-salad-with-mussels-quail-eggs-cucumbers-radish-lettuce-healthy-food-seafood-salad-top-view-flat-lay_2829-6494.jpg?w=1380&t=st=1683023902~exp=1683024502~hmac=28ae585db91833663d0f8cbaf67264073b1e87c18838c8f6c301d173296996dd"
+            src="https://static.seibertron.com/images/toys/files/154/hasbro-cliffjumper-138.jpg"
             alt="Third slide"
           />
 

@@ -1,0 +1,11 @@
+.glossy-bg{
+    
+    backdrop-filter: blur(10px);
+}
+.add-new-bg-img{
+    background-image: url("https://img.freepik.com/free-photo/fluffy-toy-texture-close-up_23-2149686884.jpg?w=1380&t=st=1684437113~exp=1684437713~hmac=85e4d0a238d71d9825068aa5df09d86f200da3abf65299e8ab271e763203ae18");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
