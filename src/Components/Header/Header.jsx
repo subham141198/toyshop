@@ -38,7 +38,7 @@ function Header() {
             <Nav className="mr-auto"></Nav>
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/blog">All Toys</Nav.Link>
+              <Nav.Link href="/alltoys">All Toys</Nav.Link>
               {user && <>
                 <Nav.Link href="/new">Add a Toy </Nav.Link>
                 <Nav.Link href="/blog">My Toys</Nav.Link>

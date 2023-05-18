@@ -8,6 +8,7 @@ import ProtectedRoute from './Routes/ProtectedRoute';
 import LoginForm from './Pages/Login';
 import RegisterForm from './Pages/Register';
 import NewToy from './Pages/NewToy';
+import AllToysComponent from './Pages/Alltoys';
 
 
 
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <RegisterForm />,
+  },
+  {
+    path: "/alltoys",
+    element: <AllToysComponent />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
