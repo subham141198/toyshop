@@ -7,6 +7,9 @@ import { useEffect } from "react";
 
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+// import UpdateToyModal from "../UpdateToyModal/UpdateToyModal";
+import UpdateToyModal from '../Components/UpdateToyModal';
+
 
 
 const MyToy = () => {
@@ -33,7 +36,7 @@ const MyToy = () => {
             });
     };
 
-    const handleJobUpdate = (data) => {
+    const handleToyUpdate = (data) => {
         console.log(data);
         fetch(`http://localhost:5000/updateJob/${data._id}`, {
             method: "PUT",
@@ -85,12 +88,13 @@ const MyToy = () => {
                                     <Button variant="primary" onClick={() => setModalShow(true)}>
                                         Edit
                                     </Button>
-                                    {/* <UpdateJobModal
+
+                                    <UpdateToyModal
                                         show={modalShow}
                                         onHide={() => setModalShow(false)}
-                                        job={job}
-                                        handleJobUpdate={handleJobUpdate}
-                                    /> */}
+                                        toy={toy}
+                                        handleToyUpdate={handleToyUpdate}
+                                    />
                                 </td>
                                 <td>
                                     {" "}
