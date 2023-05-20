@@ -14,12 +14,7 @@ import Spinner from 'react-bootstrap/Spinner';
 export default function NewToy() {
     const [addingnewToy, setaddingnewToy] = useState(false)
     const { user } = useContext(AuthContext);
-    const {
-        register,
-        handleSubmit,
-        watch,
-        formState: { errors },
-    } = useForm();
+    const { register,handleSubmit,watch,formState: { errors }} = useForm();
     const onSubmit = (data) => {
         setaddingnewToy(true);
         fetch('https://toy-shop-backend-debabratachakraborty880-gmailcom.vercel.app/newtoy', {
@@ -31,7 +26,7 @@ export default function NewToy() {
         })
           .then((response) => {
             if (!response.ok) {
-              throw new Error('Network response was not ok');
+            throw new Error('Network response was not ok');
             }
             return response.json();
           })
@@ -59,7 +54,7 @@ export default function NewToy() {
           });
       };
 
-
+      
 
 
     return (
@@ -117,7 +112,7 @@ export default function NewToy() {
                                                 value={user.displayName}
                                                 placeholder="Seller Name"
                                                 {...register("sname", { required: true })}
-                                            />
+                                                />
                                         </FloatingLabel>
                                     
                                     
@@ -133,7 +128,7 @@ export default function NewToy() {
                                                 value={user.email}
                                                 placeholder="Seller Email"
                                                 {...register("email", { required: true })}
-                                            />
+                                                />
                                         </FloatingLabel>
                                     </Col>
                                 </Row>
@@ -150,6 +145,9 @@ export default function NewToy() {
                                                 type="text"
                                                 placeholder="Sub Category"
                                                 {...register("category", { required: true })}
+                                                onChange={(event) => {
+                                                    event.target.value = event.target.value.toLowerCase();
+                                                  }}
                                             />
                                         </FloatingLabel>
                                     </Col>

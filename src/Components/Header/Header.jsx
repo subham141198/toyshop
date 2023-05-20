@@ -1,14 +1,18 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import { Navbar, NavDropdown, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { useContext } from "react";
+import { Form, Button } from "react-bootstrap";
 
 
-function Header() {
+
+function Header( props) {
   const { user } = useContext(AuthContext);
   const { LogOut } = useContext(AuthContext);
+  const location = useLocation();
+  
   const navigate = useNavigate();
 
   const tooltip = (
@@ -41,7 +45,7 @@ function Header() {
               <Nav.Link href="/alltoys">All Toys</Nav.Link>
               {user && <>
                 <Nav.Link href="/new">Add a Toy </Nav.Link>
-                <Nav.Link href="/blog">My Toys</Nav.Link>
+                <Nav.Link href="/mytoys">My Toys</Nav.Link>
               </>
               }
 
@@ -59,6 +63,23 @@ function Header() {
 
               }
             </Nav>
+            {
+              location.pathname === '/alltoys' && 
+              <>
+                <Form onSubmit={(e)=>props.handleSubmit(e)} className="d-flex">
+                <Form.Control
+                  type="search"
+                  placeholder="Search"
+                  className="me-2"
+                  aria-label="Search"
+                  onChange={(e) => props.setsearch(e.target.value.toLowerCase())}
+                />
+                <Button type="submit" variant="outline-success">Search</Button>
+              </Form>
+              </>
+              } 
+          
+            
           </Navbar.Collapse>
         </Container>
       </Navbar>
