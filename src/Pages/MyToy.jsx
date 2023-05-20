@@ -16,8 +16,9 @@ const MyToy = () => {
 
     const { user } = useContext(AuthContext);
     const [toys, settoys] = useState([]);
-    const [searchText, setSearchText] = useState("");
-    const [modalShow, setModalShow] = React.useState(false);
+    
+    const [modalShow, setModalShow] = useState(false);
+    const [selectedToy, setSelectedToy] = useState(null);
     const [control, setControl] = useState(false);
     useEffect(() => {
         fetch(`https://toy-shop-backend-debabratachakraborty880-gmailcom.vercel.app/mytoys/${user?.email}`)
@@ -27,18 +28,9 @@ const MyToy = () => {
                 settoys(data);
             });
     }, [user, control]);
-    const handleSearch = () => {
-        fetch(`https://toy-shop-backend-debabratachakraborty880-gmailcom.vercel.app/toybyname/${searchText}`)
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-                setJobs(data);
-            });
-    };
 
     const handleToyUpdate = (data) => {
-        console.log(data);
-        fetch(`http://localhost:5000/updateJob/${data._id}`, {
+        fetch(`https://toy-shop-backend-debabratachakraborty880-gmailcom.vercel.app/updatetoy/${data._id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
@@ -52,18 +44,21 @@ const MyToy = () => {
             });
     };
 
+    const openModal = (toy) => {
+        setSelectedToy(toy);
+        setModalShow(true);
+    };
+
+    const closeModal = () => {
+        setModalShow(false);
+    };
+
+
+
     return (
         <div>
             <div className="my-jobs-container">
                 <h1 className="text-center p-4 ">ALL My Toys</h1>
-                <div className="search-box p-2 text-center">
-                    <input
-                        onChange={(e) => setSearchText(e.target.value)}
-                        type="text"
-                        className="p-1"
-                    />{" "}
-                    <Button onClick={handleSearch}>Search</Button>
-                </div>
                 <Table striped bordered hover className="container">
                     <thead>
                         <tr>
@@ -78,30 +73,35 @@ const MyToy = () => {
                     </thead>
                     <tbody>
                         {toys?.map((toy, index) => (
-                            <tr>
+                            <tr key={index}>
                                 <td>{index + 1}</td>
                                 <td>{toy.toyName}</td>
                                 <td>{toy.category}</td>
                                 <td>{toy.price}</td>
                                 <td>{toy.quantity}</td>
                                 <td>
-                                    <Button variant="primary" onClick={() => setModalShow(true)}>
+                                    <Button variant="primary" onClick={() => openModal(toy)}>
                                         Edit
                                     </Button>
 
-                                    <UpdateToyModal
-                                        show={modalShow}
-                                        onHide={() => setModalShow(false)}
-                                        toy={toy}
-                                        handleToyUpdate={handleToyUpdate}
-                                    />
+
                                 </td>
                                 <td>
                                     {" "}
-                                    <button>Delete</button>
+                                    <Button>Delete</Button>
                                 </td>
                             </tr>
                         ))}
+                        {
+                            selectedToy && (
+
+                                <UpdateToyModal
+                                    show={modalShow}
+                                    onHide={closeModal}
+                                    toy={selectedToy}
+                                    handleToyUpdate={handleToyUpdate}
+                                />
+                            )}
                     </tbody>
                 </Table>
             </div>

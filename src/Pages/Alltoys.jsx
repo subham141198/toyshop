@@ -74,7 +74,7 @@ export default function AllToysComponent() {
                                     </Card.Body>
                                     <ListGroup className="list-group-flush">
                                         <ListGroup.Item><span className="fw-bold" >Price: </span> &#36;{singleToy.price} </ListGroup.Item>
-                                        <ListGroup.Item><span className="fw-bold" >Catagory: </span>{singleToy.catagory}</ListGroup.Item>
+                                        <ListGroup.Item><span className="fw-bold" >Catagory: </span>{singleToy.category}</ListGroup.Item>
                                         <ListGroup.Item><span className="fw-bold" >Available Quantity: </span>{singleToy.quantity} </ListGroup.Item>
                                     </ListGroup>
                                     <Card.Body>
