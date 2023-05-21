@@ -21,7 +21,7 @@ const MyToy = () => {
     const [selectedToy, setSelectedToy] = useState(null);
     const [control, setControl] = useState(false);
     useEffect(() => {
-        fetch(`https://toy-shop-backend-debabratachakraborty880-gmailcom.vercel.app/mytoys/${user?.email}`)
+        fetch(`https://toyserver-debabratachakraborty880-gmailcom.vercel.app/mytoys/${user?.email}`)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
@@ -31,7 +31,7 @@ const MyToy = () => {
 
     const handleToyUpdate = (data) => {
         setupdatingdata(true);
-        fetch(`https://toy-shop-backend-debabratachakraborty880-gmailcom.vercel.app/updatetoy/${data._id}`, {
+        fetch(`https://toyserver-debabratachakraborty880-gmailcom.vercel.app/updatetoy/${data._id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
@@ -81,7 +81,7 @@ const MyToy = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://toy-shop-backend-debabratachakraborty880-gmailcom.vercel.app/deletetoy/${e.target.dataset.toyId}`, {
+                fetch(`https://toyserver-debabratachakraborty880-gmailcom.vercel.app/deletetoy/${e.target.dataset.toyId}`, {
                     method: "DELETE",
                 })
                     .then((response) => {

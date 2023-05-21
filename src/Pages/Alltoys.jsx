@@ -1,25 +1,25 @@
 
 import Header from '../Components/Header/Header'
 import Footer from '../Components/Footer/Footer';
-import { Container, Card, ListGroup } from "react-bootstrap";
 import { useState, useEffect } from 'react';
+import Table from 'react-bootstrap/Table';
+import ReactStars from "react-rating-stars-component";
 import { Link } from 'react-router-dom';
-import {Spinner} from 'react-bootstrap';
 
 
 export default function AllToysComponent() {
     const [loadingdata, setloadingdata] = useState(false)
     const [alltoys, setalltoys] = useState([])
     const [search, setsearch] = useState("")
-    
-    function handleSubmit(event){
+
+    function handleSubmit(event) {
         event.preventDefault();
         console.log(search);
     }
 
     useEffect(() => {
         setloadingdata(true);
-        fetch(`https://toy-shop-backend-debabratachakraborty880-gmailcom.vercel.app/alltoys`)
+        fetch(`https://toyserver-debabratachakraborty880-gmailcom.vercel.app/alltoys`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
@@ -37,7 +37,7 @@ export default function AllToysComponent() {
 
     useEffect(() => {
         setloadingdata(true);
-        fetch(`https://toy-shop-backend-debabratachakraborty880-gmailcom.vercel.app/toybyname/${search}`)
+        fetch(`https://toyserver-debabratachakraborty880-gmailcom.vercel.app/toybyname/${search}`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
@@ -55,37 +55,39 @@ export default function AllToysComponent() {
 
     return (
         <>
-            <Header handleSubmit={handleSubmit} setsearch={setsearch}/>
-            <Container>
-                {
-                    loadingdata? <Spinner animation="border" variant="primary" /> :
-                
-                <div className="row row-cols-md-3  row-cols-1 gy-2">
+            <Header handleSubmit={handleSubmit} setsearch={setsearch} />
+            <Table striped bordered hover size="sm">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Toy Name</th>
+                        <th scope="col">Toy Image</th>
+                        <th scope="col">Seller Name</th>
+                        <th scope="col">Seller Email</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Rating</th>
+                        <th scope="col">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
                     {
                         alltoys.map((singleToy, index) => (
-                            <div key={singleToy._id}className="col">
-                                <Card>
-                                    <Card.Img height={400} variant="top" src={singleToy.imageurl} />
-                                    <Card.Body>
-                                        <Card.Title>{singleToy.toyName}<h5>by {singleToy.sname}</h5></Card.Title>
-                                        <Card.Text>
-                                            {singleToy.description}
-                                        </Card.Text>
-                                    </Card.Body>
-                                    <ListGroup className="list-group-flush">
-                                        <ListGroup.Item><span className="fw-bold" >Price: </span> &#36;{singleToy.price} </ListGroup.Item>
-                                        <ListGroup.Item><span className="fw-bold" >Catagory: </span>{singleToy.category}</ListGroup.Item>
-                                        <ListGroup.Item><span className="fw-bold" >Available Quantity: </span>{singleToy.quantity} </ListGroup.Item>
-                                    </ListGroup>
-                                    <Card.Body>
-                                        <Link className="btn btn-outline-primary"  to="/view" state={singleToy} >View Details</Link>
-                                    </Card.Body>
-                                </Card>
-                            </div>
-                        ))}
-                </div>
-}
-            </Container>
+                            <tr>
+                                <th scope="row">{index + 1}</th>
+                                <td>{singleToy.toyName}</td>
+                                <td className='d-flex justify-content-center'><img width={50} className="img-fluid" src={singleToy.imageurl} alt="" srcset="" /></td>
+                                <td>{singleToy.sname}</td>
+                                <td>{singleToy.email}</td>
+                                <td>{singleToy.price}</td>
+                                <td>{singleToy.category}</td>
+                                <td><ReactStars count={5} edit={false} value={parseInt(singleToy.rating)} size={24} activeColor="#ffd700" /></td>
+                                <td><Link className="btn btn-outline-primary"  to="/view" state={singleToy} >View Details</Link></td>
+                            </tr>
+                        ))
+                    }
+                </tbody>
+            </Table>
             <Footer />
         </>
     );

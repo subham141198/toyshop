@@ -36,7 +36,13 @@ function Header( props) {
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="/">Toy Bazzar</Navbar.Brand>
+          <Navbar.Brand href="/"><img
+              src="https://i.ibb.co/TMq8PPy/Pngtree-cartoon-hand-drawn-toy-convenience-5781180.png"
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+              alt="React Bootstrap logo"
+            /></Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-between">
             <Nav className="mr-auto"></Nav>

@@ -17,7 +17,7 @@ import Banner from '../Components/Banner/Banner';
 function Home() {
   const [loadingdata, setloadingdata] = useState(false)
   const [alltoys, setalltoys] = useState([])
-  const [activeTab, setActiveTab] = useState("transformer")
+  const [activeTab, setActiveTab] = useState("all")
   const [categoryToys, setcategoryToys] = useState([])
   const [modalShow, setModalShow] = useState(false);
   let allcategory = [];
@@ -25,7 +25,7 @@ function Home() {
 
   useEffect(() => {
     setloadingdata(true);
-    fetch(`https://toy-shop-backend-debabratachakraborty880-gmailcom.vercel.app/alltoys`)
+    fetch(`https://toyserver-debabratachakraborty880-gmailcom.vercel.app/alltoys`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -44,7 +44,7 @@ function Home() {
 
   useEffect(() => {
     setloadingdata(true);
-    const url = `https://toy-shop-backend-debabratachakraborty880-gmailcom.vercel.app/categorytoys/${activeTab}`
+    const url = `https://toyserver-debabratachakraborty880-gmailcom.vercel.app/categorytoys/${activeTab}`
     fetch(url)
       .then((response) => {
         if (!response.ok) {
@@ -90,7 +90,7 @@ function Home() {
                                 <Card.Title>{singleToy.toyName}</Card.Title>
                                 <ReactStars count={5} edit={false} value={parseInt(singleToy.rating)} size={24} activeColor="#ffd700"
                                 />
-                                <Link className="btn btn-outline-primary" to="/view" state={singleToy} >Go somewhere</Link>
+                                <Link className="btn btn-outline-primary" to="/view" state={singleToy} >View Detail</Link>
                               </Card.Body>
                             </Card>
                           </div>
@@ -101,42 +101,46 @@ function Home() {
                 </Tab>
               ))
             }
-
           </Tabs>
-      
         </Container>
-      
-
       }
-       <h2 className="p-4 text-center" >Gallery</h2>
-          <div className="d-flex">
-          
-          <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        </Card.Body>
-        </Card>
-        <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        </Card.Body>
-        </Card>
-        <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        </Card.Body>
-        </Card>
-        <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        </Card.Body>
-        </Card>
+      <hr />
+      <h2 className="p-4 text-center" >Gallery</h2>
+      <Container>
+        <div className="row">
+          <div className="col-6">
+            <div className="row">
+              <div className="col-6">
+                <Card>
+                  <Card.Img height={300} width={200} variant="top" src="https://i.ibb.co/PxcHKd8/Screenshot-2023-05-21-162927.png" />
+                </Card>
+              </div>
+              <div className="col-6">
+                <Card>
+                  <Card.Img height={300} width={200} variant="top" src="https://i.ibb.co/VtBrMK9/Screenshot-2023-05-21-163127.png" />
+                </Card>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-6">
+                <Card>
+                  <Card.Img height={300} width={200} variant="top" src="https://i.ibb.co/0t3nHdv/6795656-R-SET.jpg" />
+                </Card>
+              </div>
+              <div className="col-6">
+                <Card>
+                  <Card.Img height={300} width={200} variant="top" src="https://i.ibb.co/WFhs1Sx/Mc-Farlane-Toys-DC-Multiverse-January-2023-Featured-01.webp" />
+                </Card>
+              </div>
+            </div>
+          </div>
+          <div className="col-6 d-flex justify-content-center flex-column border-start ">
+            <h1 className="text-center">Fasinating Toys</h1>
+            <p className="text-center">An action figure is a poseable character model figure made most commonly of plastic, and often based upon characters from a film, comic book, military, video game or television program; fictional or historical.</p>
+          </div>
         </div>
-
+      </Container>
+      <hr />
       <Footer></Footer>
 
     </>
