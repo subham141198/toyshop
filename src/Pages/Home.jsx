@@ -6,11 +6,12 @@ import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
 import Spinner from 'react-bootstrap/Spinner';
 import ReactStars from "react-rating-stars-component";
-
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { Link } from "react-router-dom";
 import Banner from '../Components/Banner/Banner';
+
+
 
 
 function Home() {
@@ -102,8 +103,39 @@ function Home() {
             }
 
           </Tabs>
+      
         </Container>
+      
+
       }
+       <h2 className="p-4 text-center" >Gallery</h2>
+          <div className="d-flex">
+          
+          <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src="holder.js/100px180" />
+      <Card.Body>
+        <Card.Title>Card Title</Card.Title>
+        </Card.Body>
+        </Card>
+        <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src="holder.js/100px180" />
+      <Card.Body>
+        <Card.Title>Card Title</Card.Title>
+        </Card.Body>
+        </Card>
+        <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src="holder.js/100px180" />
+      <Card.Body>
+        <Card.Title>Card Title</Card.Title>
+        </Card.Body>
+        </Card>
+        <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src="holder.js/100px180" />
+      <Card.Body>
+        <Card.Title>Card Title</Card.Title>
+        </Card.Body>
+        </Card>
+        </div>
 
       <Footer></Footer>
 
