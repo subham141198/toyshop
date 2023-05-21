@@ -1,17 +1,18 @@
 import React from 'react';
-import Button from "react-bootstrap/Button";
+import { Button, Spinner } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
+import { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 
-const UpdateToyModal = ({toy, handleToyUpdate, show, onHide}) => {
-  console.log(toy)
+const UpdateToyModal = ({ show, onHide, toy, handleToyUpdate, updatingdata }) => {
+
   const {
     register,
     handleSubmit,
-    watch,
-    reset,
     formState: { errors },
+    setValue
   } = useForm();
+
 
   useEffect(() => {
     if (toy) {
@@ -22,22 +23,23 @@ const UpdateToyModal = ({toy, handleToyUpdate, show, onHide}) => {
       setValue('price', toy.price);
       setValue('rating', toy.rating);
       setValue('quantity', toy.quantity);
+      setValue('_id', toy._id);
     }
   }, [toy, setValue]);
-  
-  
-  function onSubmit(data){
-      handleToyUpdate(data)
-      onHide();
+
+
+  function onSubmit(data) {
+    handleToyUpdate(data)
   }
   return (
 
     <Modal
+      show={show}
+      onHide={onHide}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
-      show={show}
-      onHide={onHide}
+
     >
       <Modal.Header closeButton>
         <Modal.Title
@@ -57,52 +59,59 @@ const UpdateToyModal = ({toy, handleToyUpdate, show, onHide}) => {
             className="text-input form-control"
             {...register("toyName")}
             placeholder="Toy Name"
-            defaultValue={toy?.toyName}
+
           />
           <input
             className="text-input d-none"
             {...register("_id")}
-            value={toy?._id}
+
           />
 
           <input
             className="text-input form-control"
             {...register("imageurl", { required: true })}
             placeholder="Toy Image"
-            defaultValue={toy?.imageurl}
+
           />
           <input
             className="text-input form-control"
             {...register("sname", { required: true })}
             placeholder="Seller Name"
-            defaultValue={toy?.sname}
+
           />
           <input
             className="text-input form-control"
             placeholder="category"
             {...register("category")}
-            defaultValue={toy?.category}
+
           />
           <input
             className="text-input form-control"
             placeholder="price"
             {...register("price")}
-            defaultValue={toy?.price}
+
           />
           <input
             className="text-input form-control"
             placeholder="rating"
             {...register("rating")}
-            defaultValue={toy?.rating}
+
           />
           <input
             className="text-input form-control"
             placeholder="Available Quantity"
             {...register("quantity")}
-            defaultValue={toy?.quantity}
+
           />
 
-          <Button className='outline-primary' value="Update" type="submit" >Update</Button>
+          <Button className='outline-primary' value="Update" type="submit" >{updatingdata ? <Spinner
+            as="span"
+            animation="border"
+            size="sm"
+            role="status"
+            aria-hidden="true"
+          /> :
+            "Update"}</Button>
         </form>
       </Modal.Body>
       <Modal.Footer>

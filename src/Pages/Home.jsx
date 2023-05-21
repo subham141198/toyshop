@@ -71,6 +71,7 @@ function Home() {
       <Banner></Banner>
       {
         <Container>
+          <h1 className="p-4 text-center ">Shop By Category</h1>
           <Tabs defaultActiveKey={allcategory[0]} id="fill-tab-example" className="mb-3" fill onClick={(e) => { console.log(e); setActiveTab(e.target.innerText.toLowerCase()) }}
           >
             {

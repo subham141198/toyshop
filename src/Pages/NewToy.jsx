@@ -8,53 +8,53 @@ import { Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import Swal from 'sweetalert2'
 import { AuthContext } from "../Provider/AuthProvider";
-import { useContext,useState } from "react";
+import { useContext, useState } from "react";
 import Spinner from 'react-bootstrap/Spinner';
 
 export default function NewToy() {
     const [addingnewToy, setaddingnewToy] = useState(false)
     const { user } = useContext(AuthContext);
-    const { register,handleSubmit,watch,formState: { errors }} = useForm();
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = (data) => {
         setaddingnewToy(true);
         fetch('https://toy-shop-backend-debabratachakraborty880-gmailcom.vercel.app/newtoy', {
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json'
-          },
-          body: JSON.stringify(data)
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
         })
-          .then((response) => {
-            if (!response.ok) {
-            throw new Error('Network response was not ok');
-            }
-            return response.json();
-          })
-          .then((data) => {
-            console.log(data);
-            if (data.insertedId) {
-              setaddingnewToy(false);
-              Swal.fire({
-                title: 'Success!',
-                text: 'Your toy is added to the store',
-                icon: 'success',
-                confirmButtonText: 'Dismiss'
-              });
-            }
-          })
-          .catch((error) => {
-            console.error('Error submitting form:', error);
-            setaddingnewToy(false);
-            Swal.fire({
-              title: 'Error',
-              text: 'Failed to add toy to the store',
-              icon: 'error',
-              confirmButtonText: 'Dismiss'
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+                if (data.insertedId) {
+                    setaddingnewToy(false);
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Your toy is added to the store',
+                        icon: 'success',
+                        confirmButtonText: 'Dismiss'
+                    });
+                }
+            })
+            .catch((error) => {
+                console.error('Error submitting form:', error);
+                setaddingnewToy(false);
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Failed to add toy to the store',
+                    icon: 'error',
+                    confirmButtonText: 'Dismiss'
+                });
             });
-          });
-      };
+    };
 
-      
+
 
 
     return (
@@ -112,10 +112,10 @@ export default function NewToy() {
                                                 value={user.displayName}
                                                 placeholder="Seller Name"
                                                 {...register("sname", { required: true })}
-                                                />
+                                            />
                                         </FloatingLabel>
-                                    
-                                    
+
+
                                         <FloatingLabel
                                             controlId="floatingEmail"
                                             label="Seller Email"
@@ -128,7 +128,7 @@ export default function NewToy() {
                                                 value={user.email}
                                                 placeholder="Seller Email"
                                                 {...register("email", { required: true })}
-                                                />
+                                            />
                                         </FloatingLabel>
                                     </Col>
                                 </Row>
@@ -147,7 +147,7 @@ export default function NewToy() {
                                                 {...register("category", { required: true })}
                                                 onChange={(event) => {
                                                     event.target.value = event.target.value.toLowerCase();
-                                                  }}
+                                                }}
                                             />
                                         </FloatingLabel>
                                     </Col>
@@ -210,19 +210,19 @@ export default function NewToy() {
                                     />
                                 </FloatingLabel>
                                 <Row className="justify-content-center">
-                                <Button
-                                    className="mb-3 px-3 rounded-bottom"
-                                    type="submit"
-                                    variant="outline-primary"
-                                disabled= { addingnewToy ? "disabled" : ""}> {addingnewToy? <Spinner
-                                as="span"
-                                animation="border"
-                                size="sm"
-                                role="status"
-                                aria-hidden="true"
-                              /> :
-                                    "Add" }
-                                </Button>
+                                    <Button
+                                        className="mb-3 px-3 rounded-bottom"
+                                        type="submit"
+                                        variant="outline-primary"
+                                        disabled={addingnewToy ? "disabled" : ""}> {addingnewToy ? <Spinner
+                                            as="span"
+                                            animation="border"
+                                            size="sm"
+                                            role="status"
+                                            aria-hidden="true"
+                                        /> :
+                                            "Add"}
+                                    </Button>
                                 </Row>
                             </Form>
                         </Card.Body>
