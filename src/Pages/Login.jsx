@@ -50,7 +50,7 @@ function LoginForm() {
     }
   }
 
-  
+
 
 
 
@@ -88,9 +88,9 @@ function LoginForm() {
             <Link to="/register">Create here</Link>
               </div>
 
-            
+
             </div>
-            
+
           </div>
         </div>
       </div>

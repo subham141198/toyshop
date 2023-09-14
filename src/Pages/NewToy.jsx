@@ -17,7 +17,7 @@ export default function NewToy() {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = (data) => {
         setaddingnewToy(true);
-        fetch('https://toyserver-debabratachakraborty880-gmailcom.vercel.app/newtoy', {
+        fetch('http://localhost:5000/newtoy', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

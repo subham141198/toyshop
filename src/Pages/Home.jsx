@@ -25,7 +25,7 @@ function Home() {
 
   useEffect(() => {
     setloadingdata(true);
-    fetch(`https://toyserver-debabratachakraborty880-gmailcom.vercel.app/alltoys`)
+    fetch(`http://localhost:5000/alltoys`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -44,7 +44,7 @@ function Home() {
 
   useEffect(() => {
     setloadingdata(true);
-    const url = `https://toyserver-debabratachakraborty880-gmailcom.vercel.app/categorytoys/${activeTab}`
+    const url = `http://localhost:5000/categorytoys/${activeTab}`
     fetch(url)
       .then((response) => {
         if (!response.ok) {

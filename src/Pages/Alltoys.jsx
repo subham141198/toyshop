@@ -19,7 +19,7 @@ export default function AllToysComponent() {
 
     useEffect(() => {
         setloadingdata(true);
-        fetch(`https://toyserver-debabratachakraborty880-gmailcom.vercel.app/alltoys`)
+        fetch(`http://localhost:5000/alltoys`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
@@ -37,7 +37,7 @@ export default function AllToysComponent() {
 
     useEffect(() => {
         setloadingdata(true);
-        fetch(`https://toyserver-debabratachakraborty880-gmailcom.vercel.app/toybyname/${search}`)
+        fetch(`http://localhost:5000/toybyname/${search}`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok");

@@ -6,11 +6,11 @@ import Spinner from 'react-bootstrap/Spinner';
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const location = useLocation();
+  console.log(location)
   if (loading) {
     return (
       <>
         <div className="row vh-100 justify-content-center align-items-center"><Spinner animation="border" variant="primary" size="lg"/></div>
-        
       </>
     );
   }

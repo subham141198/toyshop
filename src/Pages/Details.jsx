@@ -39,8 +39,6 @@ function Detials() {
           </div>
         </div>
       </Container>
-
-
       <Footer />
 
     </>

@@ -1,32 +1,38 @@
 import { createContext,useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, signInWithPhoneNumber, signInWithEmailAndPassword, signOut, signInWithPopup,onAuthStateChanged, GithubAuthProvider, GoogleAuthProvider, RecaptchaVerifier  } from "firebase/auth"
+import { createUserWithEmailAndPassword, FacebookAuthProvider ,signInWithEmailAndPassword, signOut, signInWithPopup,onAuthStateChanged, GithubAuthProvider, GoogleAuthProvider, RecaptchaVerifier, OAuthProvider  } from "firebase/auth"
 import {auth} from "../Firebase/Firebase.config"
-import Swal from 'sweetalert2'
-export const AuthContext = createContext(null); 
-const googleAuthProvider = new GoogleAuthProvider();
 
+export const AuthContext = createContext(null);
+const googleAuthProvider = new GoogleAuthProvider();
+const facebookauthProvider =  new FacebookAuthProvider();
+const microsoftauthProvider = new OAuthProvider('microsoft.com');
 
 
 export function AuthProvider({children}){
     const [user, setuser] = useState(null)
     const [loading, setloading] = useState(true)
-    
+
     function SignUp(email, password){
         setloading(true)
         return createUserWithEmailAndPassword(auth,email,password)
     }
     function Login(email, password){
         setloading(true)
-        return signInWithEmailAndPassword(auth,email,password)    
+        return signInWithEmailAndPassword(auth,email,password)
     }
     function LogOut(){
         setloading(true)
         return signOut(auth)
     }
-    
+
     function signInWithGoogle(){
         setloading(true)
         return signInWithPopup(auth,googleAuthProvider)
+    }
+
+    function signInWithFacebook(){
+        setloading(true)
+        return signInWithPopup(auth,facebookauthProvider)
     }
 
     useEffect(() => {
@@ -37,9 +43,9 @@ export function AuthProvider({children}){
         });
         return unsubscribe;
       }, []);
-    
+
       const value = {
-        user,loading,SignUp,Login,LogOut,signInWithGoogle
+        user,loading,SignUp,Login,LogOut,signInWithGoogle,signInWithFacebook
       };
 
 
