@@ -8,11 +8,11 @@ import { Form, Button } from "react-bootstrap";
 
 
 
-function Header( props) {
+function Header(props) {
   const { user } = useContext(AuthContext);
   const { LogOut } = useContext(AuthContext);
   const location = useLocation();
-  
+
   const navigate = useNavigate();
 
   const tooltip = (
@@ -37,12 +37,12 @@ function Header( props) {
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="/"><img
-              src="https://i.ibb.co/TMq8PPy/Pngtree-cartoon-hand-drawn-toy-convenience-5781180.png"
-              width="30"
-              height="30"
-              className="d-inline-block align-top"
-              alt="React Bootstrap logo"
-            /></Navbar.Brand>
+            src="https://i.ibb.co/TMq8PPy/Pngtree-cartoon-hand-drawn-toy-convenience-5781180.png"
+            width="30"
+            height="30"
+            className="d-inline-block align-top"
+            alt="React Bootstrap logo"
+          /></Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-between">
             <Nav className="mr-auto"></Nav>
@@ -70,22 +70,22 @@ function Header( props) {
               }
             </Nav>
             {
-              location.pathname === '/alltoys' && 
+              location.pathname === '/alltoys' &&
               <>
-                <Form onSubmit={(e)=>props.handleSubmit(e)} className="d-flex">
-                <Form.Control
-                  type="search"
-                  placeholder="Search"
-                  className="me-2"
-                  aria-label="Search"
-                  onChange={(e) => props.setsearch(e.target.value.toLowerCase())}
-                />
-                <Button type="submit" variant="outline-success">Search</Button>
-              </Form>
+                <Form onSubmit={(e) => props.handleSubmit(e)} className="d-flex">
+                  <Form.Control
+                    type="search"
+                    placeholder="Search"
+                    className="me-2"
+                    aria-label="Search"
+                    onChange={(e) => props.setsearch(e.target.value.toLowerCase())}
+                  />
+                  <Button type="submit" variant="outline-success">Search</Button>
+                </Form>
               </>
-              } 
-          
-            
+            }
+
+
           </Navbar.Collapse>
         </Container>
       </Navbar>

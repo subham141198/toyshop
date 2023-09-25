@@ -15,6 +15,7 @@ export default function NewToy() {
     const [addingnewToy, setaddingnewToy] = useState(false)
     const { user } = useContext(AuthContext);
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
+
     const onSubmit = (data) => {
         setaddingnewToy(true);
         fetch('http://localhost:5000/newtoy', {
